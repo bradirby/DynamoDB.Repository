@@ -1,24 +1,26 @@
 ﻿using System;
+using DynamoDB.Repository.TestWebApp.DataAccess;
+using DynamoDB.Repository.TestWebApp.Models;
 using NUnit.Framework;
 
 namespace DynamoDB.Repository.IntgTests
 {
     public class DynamoDBRepositoryIntgTest
     {
-        public MovieRepository sut { get; set; }
+        public MovieRepository Sut { get; set; }
 
         [OneTimeSetUp]
         public void OneTimeSetup()
         {
-            var fact = new DynamoDBFactory(new DynamoDBConfigProvider());
-            sut = new MovieRepository(fact);
+            var cfg = new DynamoDBConfigDefaultUserProvider();
+            Sut = new MovieRepository(cfg);
         }
 
         [Test]
         public void GetByKey_ValidKey_ReturnsRow()
         {
-            var m = GetMovie("Brad101");
-            var row = sut.GetById(m.Year, m.Title);
+            var m = GetMovie("Brad401");
+            var row = Sut.GetById(m.Year, m.Title);
             Assert.IsNotNull(row);
             Assert.AreEqual(m.Title, row.Title);
             Assert.AreEqual(m.Year, row.Year);
@@ -27,31 +29,31 @@ namespace DynamoDB.Repository.IntgTests
         [Test]
         public void GetByKey_NonExistentKey_ReturnsNull()
         {
-            var row = sut.GetById(2013, "Movie Does Not Exist");
+            var row = Sut.GetById(2013, "Movie Does Not Exist");
             Assert.IsNull(row);
         }
 
         [Test]
         public void Insert_ValidObject_Inserts()
         {
-            var m = GetMovie("Brad201");
-            sut.Insert(m);
+            var m = GetMovie("Brad401");
+            Sut.Insert(m);
         }
 
         [Test]
         public void Insert_NullObject_Throws()
         {
-            Assert.Throws<ArgumentNullException>(() => sut.Insert(null));
+            Assert.Throws<ArgumentNullException>(() => Sut.Insert(null));
         }
 
         [Test]
         public void Update_ValidObject_Updates()
         {
             var m = GetMovie("Brad201");
-            var orig = sut.GetById(m.Year, m.Title);
+            var orig = Sut.GetById(m.Year, m.Title);
             orig.Info.ImageUrl = Guid.NewGuid().ToString();
-            sut.Update(orig);
-            var after = sut.GetById(orig.Year, orig.Title);
+            Sut.Update(orig);
+            var after = Sut.GetById(orig.Year, orig.Title);
             Assert.AreEqual(orig.Title, after.Title);
             Assert.AreEqual(orig.Info.ImageUrl, after.Info.ImageUrl);
         }
@@ -59,7 +61,7 @@ namespace DynamoDB.Repository.IntgTests
         [Test]
         public void Update_NullObject_Throws()
         {
-            Assert.Throws<ArgumentNullException>(() => sut.Update(null));
+            Assert.Throws<ArgumentNullException>(() => Sut.Update(null));
         }
 
         private Movie GetMovie(string movieName)

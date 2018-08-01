@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DocumentModel;
+using DynamoDB.Repository.TestWebApp.Models;
 
-namespace DynamoDB.Repository.IntgTests
+namespace DynamoDB.Repository.TestWebApp.DataAccess
 {
     public interface IMovieRepository
     {

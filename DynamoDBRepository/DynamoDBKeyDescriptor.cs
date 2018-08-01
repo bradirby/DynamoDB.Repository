@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DynamoDB.Repository
 {
-    public class DynamoDBKeyDescriptor
+    internal class DynamoDBKeyDescriptor
     {
         public string Name { get;  }
         public DynamoDBKeyType KeyType { get; }

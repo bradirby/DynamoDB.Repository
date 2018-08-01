@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.1</Version>
+    <Version>0.1.4</Version>
     <Authors>Brad Irby</Authors>
     <Description>.NET Core package that implements the Repository pattern for DynamoDB tables</Description>
     <Copyright>Brad Irby</Copyright>
@@ -12,9 +12,11 @@
     <PackageTags>DynamoDB, Repository, C#</PackageTags>
     <AssemblyVersion>0.1.0.1</AssemblyVersion>
     <FileVersion>0.1.0.1</FileVersion>
+    <PackageReleaseNotes>Allows user to specify which AWS profile to use.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DynamoDBTable.cs" />
     <Compile Remove="DynamoDBUpdateDescriptorBuilder.cs" />
     <Compile Remove="IDynamoDBUpdateDescriptorBuilder.cs" />
   </ItemGroup>
@@ -22,6 +24,7 @@
   <ItemGroup>
     <PackageReference Include="AWSSDK.Core" Version="3.3.24.4" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 

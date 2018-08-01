@@ -7,21 +7,28 @@ namespace DynamoDB.Repository.IntgTests
     public class DynamoDBFactoryIntgTest
     {
 
-        public DynamoDBFactory sut { get; set; }
+        /// <summary>
+        /// Create a table by hand with the following case sensitive
+        /// Table Name: Movies
+        /// Partition key year : number
+        /// Sort Key title : string
+        /// </summary>
+
+        private DynamoDBFactory Sut { get; set; }
 
         [OneTimeSetUp]
         public void OneTimeSetup()
         {
-            var cfg = new DynamoDBConfigProvider();
-            sut = new DynamoDBFactory(cfg);
+            var cfg = new DynamoDBConfigDefaultUserProvider();
+            Sut = new DynamoDBFactory(cfg);
         }
 
 
         [Test]
         public void CreateTable()
         {
-            var client = sut.GetClient();
-            var tblRequest = sut.CreateTableAsync("Movie3", GetMovieTableAttributes(), GetMovieTableSchema(), client);
+            var client = Sut.GetClient();
+            var tblRequest = Sut.CreateTableAsync("Movie3", GetMovieTableAttributes(), GetMovieTableSchema(), client);
             Assert.IsNotNull(tblRequest.Result);
         }
 

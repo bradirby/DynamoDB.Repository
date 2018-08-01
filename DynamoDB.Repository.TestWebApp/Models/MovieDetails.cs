@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace DynamoDB.Repository.IntgTests
+namespace DynamoDB.Repository.TestWebApp.Models
 {
     public class MovieDetails
     {
@@ -19,7 +21,7 @@ namespace DynamoDB.Repository.IntgTests
         public List<string> Genres { get; set; } = new List<string>();
 
         [JsonProperty("image_url")]
-        public string ImageUrl { get;set; }
+        public string ImageUrl { get; set; }
 
         [JsonProperty("plot")]
         public string Plot { get; set; }

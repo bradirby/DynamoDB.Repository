@@ -9,21 +9,20 @@ namespace DynamoDB.Repository.UnitTests
 {
     public class DynamoDBFactoryUnitTest
     {
-
-        public DynamoDBFactory sut { get; set; }
+        private DynamoDBFactory Sut { get; set; }
 
         [OneTimeSetUp]
         public void OneTimeSetup()
         {
             var mockConfig = new Mock<IDynamoDBConfigProvider>();
-            sut = new DynamoDBFactory(mockConfig.Object);
+            Sut = new DynamoDBFactory(mockConfig.Object);
         }
 
 
         [Test]
         public void CanGetClient()
         {
-            var c = sut.GetClient();
+            var c = Sut.GetClient();
             Assert.IsNotNull(c);
         }
 

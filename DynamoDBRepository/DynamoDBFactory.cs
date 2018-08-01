@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
@@ -9,7 +11,7 @@ using Amazon.DynamoDBv2.Model;
 
 namespace DynamoDB.Repository
 {
-    public class DynamoDBFactory : IDynamoDBFactory
+    internal class DynamoDBFactory 
     {
         private IDynamoDBConfigProvider ConfigProvider { get; set; }
 
@@ -26,9 +28,17 @@ namespace DynamoDB.Repository
         /// <returns></returns>
         public Table GetTableObject(string tableName) 
         {
-            var client = GetClient();
-            var table = Table.LoadTable(client, tableName);
-            return table;
+            try
+            {
+                var client = GetClient();
+                var table = Table.LoadTable(client, tableName);
+                return table;
+            }
+            catch (Exception ex)
+            {
+                if (Debugger.IsAttached) Debugger.Break();
+                throw;
+            }
         }
 
         public AmazonDynamoDBClient GetClient()

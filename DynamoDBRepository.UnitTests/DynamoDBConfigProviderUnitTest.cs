@@ -6,7 +6,7 @@ namespace DynamoDB.Repository.UnitTests
 {
     public class DynamoDBConfigProviderUnitTest
     {
-        private DynamoDBConfigProvider sut { get; set; }
+        private DynamoDBConfigDefaultUserProvider sut { get; set; }
 
         [Test]
         public void CanGetConfig()

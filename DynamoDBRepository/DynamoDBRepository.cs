@@ -6,17 +6,26 @@ using Newtonsoft.Json;
 
 namespace DynamoDB.Repository
 {
-    public abstract class BaseDynamoDBRepository<EntType>
+    public abstract class DynamoDBRepository<EntType>
     {
         protected Table DynamoTable { get; set; }
 
+        private List<DynamoDBKeyDescriptor> KeyDescriptors { get;  }
 
-        private IDynamoDBFactory Factory { get; set; }
+        private string TableName { get; }
 
-        protected BaseDynamoDBRepository(IDynamoDBFactory fact)
+        protected void AddKeyDescriptor(string keyName,DynamoDBKeyType keyType, DynamoDBDataType dataType)
         {
-            Factory = fact;
-            SetupKeyDescriptors();
+            KeyDescriptors.Add(new DynamoDBKeyDescriptor( keyName, keyType, dataType));
+        }
+
+        protected DynamoDBRepository(string tableName, IDynamoDBConfigProvider configProvider)
+        {
+            TableName = tableName;
+            KeyDescriptors = new List<DynamoDBKeyDescriptor>();
+
+            var factory = new DynamoDBFactory(configProvider);
+            DynamoTable = factory.GetTableObject(TableName);
         }
 
         /// <summary>
@@ -64,8 +73,6 @@ namespace DynamoDB.Repository
             return movie;
 
         }
-
-        public abstract void SetupKeyDescriptors();
 
     }
 }
