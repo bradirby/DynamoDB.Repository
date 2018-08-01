@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDBRepository", "DynamoDBRepository\DynamoDBRepository.csproj", "{5C661D31-0CB4-4F15-A060-0CC053EFEE34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDBRepository.IntgTests", "DynamoDBRepository.IntgTests\DynamoDBRepository.IntgTests.csproj", "{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDBRepository.UnitTests", "DynamoDBRepository.UnitTests\DynamoDBRepository.UnitTests.csproj", "{3887BBA8-F8C4-4732-A328-E065F26F21A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C661D31-0CB4-4F15-A060-0CC053EFEE34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C661D31-0CB4-4F15-A060-0CC053EFEE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C661D31-0CB4-4F15-A060-0CC053EFEE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C661D31-0CB4-4F15-A060-0CC053EFEE34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3887BBA8-F8C4-4732-A328-E065F26F21A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3887BBA8-F8C4-4732-A328-E065F26F21A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3887BBA8-F8C4-4732-A328-E065F26F21A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3887BBA8-F8C4-4732-A328-E065F26F21A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4A0006D-4304-4993-A7A2-CE690624672F}
+	EndGlobalSection
+EndGlobal
