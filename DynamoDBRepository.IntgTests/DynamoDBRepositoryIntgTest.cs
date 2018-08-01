@@ -1,4 +1,6 @@
 ﻿using System;
+using DynamoDB.Repository.TestWebApp.DataAccess;
+using DynamoDB.Repository.TestWebApp.Models;
 using NUnit.Framework;
 
 namespace DynamoDB.Repository.IntgTests
@@ -10,14 +12,14 @@ namespace DynamoDB.Repository.IntgTests
         [OneTimeSetUp]
         public void OneTimeSetup()
         {
-            var fact = new DynamoDBFactory(new DynamoDBConfigProvider());
-            sut = new MovieRepository(fact);
+            var cfg = new DynamoDBConfigProvider();
+            sut = new MovieRepository(cfg);
         }
 
         [Test]
         public void GetByKey_ValidKey_ReturnsRow()
         {
-            var m = GetMovie("Brad101");
+            var m = GetMovie("Brad401");
             var row = sut.GetById(m.Year, m.Title);
             Assert.IsNotNull(row);
             Assert.AreEqual(m.Title, row.Title);
@@ -34,7 +36,7 @@ namespace DynamoDB.Repository.IntgTests
         [Test]
         public void Insert_ValidObject_Inserts()
         {
-            var m = GetMovie("Brad201");
+            var m = GetMovie("Brad401");
             sut.Insert(m);
         }
 

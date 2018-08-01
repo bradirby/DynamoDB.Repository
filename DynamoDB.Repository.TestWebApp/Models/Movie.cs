@@ -1,8 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace DynamoDB.Repository.IntgTests
+namespace DynamoDB.Repository.TestWebApp.Models
 {
-    public class  Movie 
+    public class Movie
     {
         [JsonProperty("year")]
         public int Year { get; set; }

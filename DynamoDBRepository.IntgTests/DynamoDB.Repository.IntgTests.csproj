@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DynamoDB.Repository.TestWebApp\DynamoDB.Repository.TestWebApp.csproj" />
     <ProjectReference Include="..\DynamoDBRepository\DynamoDB.Repository.csproj" />
   </ItemGroup>
 
