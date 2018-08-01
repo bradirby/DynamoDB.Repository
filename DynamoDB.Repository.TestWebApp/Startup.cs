@@ -19,7 +19,7 @@ namespace DynamoDB.Repository.TestWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDynamoDBRepository();
+            services.AddTransient<IDynamoDBConfigProvider, DynamoDBConfigDefaultUserProvider>();
             services.AddTransient<IMovieRepository, MovieRepository>();
         }
 

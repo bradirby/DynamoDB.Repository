@@ -11,7 +11,7 @@ using Amazon.DynamoDBv2.Model;
 
 namespace DynamoDB.Repository
 {
-    public class DynamoDBFactory 
+    internal class DynamoDBFactory 
     {
         private IDynamoDBConfigProvider ConfigProvider { get; set; }
 
@@ -34,7 +34,7 @@ namespace DynamoDB.Repository
                 var table = Table.LoadTable(client, tableName);
                 return table;
             }
-            catch (Exception exc)
+            catch (Exception ex)
             {
                 if (Debugger.IsAttached) Debugger.Break();
                 throw;

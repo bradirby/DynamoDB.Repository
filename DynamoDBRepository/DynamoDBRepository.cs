@@ -10,12 +10,16 @@ namespace DynamoDB.Repository
     {
         protected Table DynamoTable { get; set; }
 
-        public List<DynamoDBKeyDescriptor> KeyDescriptors { get; internal set; }
+        private List<DynamoDBKeyDescriptor> KeyDescriptors { get;  }
 
-        public string TableName { get; }
+        private string TableName { get; }
 
+        protected void AddKeyDescriptor(string keyName,DynamoDBKeyType keyType, DynamoDBDataType dataType)
+        {
+            KeyDescriptors.Add(new DynamoDBKeyDescriptor( keyName, keyType, dataType));
+        }
 
-        public DynamoDBRepository(string tableName, IDynamoDBConfigProvider configProvider)
+        protected DynamoDBRepository(string tableName, IDynamoDBConfigProvider configProvider)
         {
             TableName = tableName;
             KeyDescriptors = new List<DynamoDBKeyDescriptor>();

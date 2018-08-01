@@ -7,10 +7,10 @@ namespace DynamoDB.Repository.TestWebApp.DataAccess
     public class MovieRepository : DynamoDBRepository<Movie>, IMovieRepository
     {
 
-        public MovieRepository(IDynamoDBConfigProvider configProvider) : base("Movie2", configProvider)
+        public MovieRepository(IDynamoDBConfigProvider configProvider) : base("Movies", configProvider)
         {
-            KeyDescriptors.Add(new DynamoDBKeyDescriptor("year", DynamoDBKeyType.Hash, DynamoDBDataType.Number));
-            KeyDescriptors.Add(new DynamoDBKeyDescriptor("title", DynamoDBKeyType.Range, DynamoDBDataType.String));
+            AddKeyDescriptor("year", DynamoDBKeyType.Hash, DynamoDBDataType.Number);
+            AddKeyDescriptor("title", DynamoDBKeyType.Range, DynamoDBDataType.String);
         }
 
 

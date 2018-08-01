@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.3</Version>
+    <Version>0.1.4</Version>
     <Authors>Brad Irby</Authors>
     <Description>.NET Core package that implements the Repository pattern for DynamoDB tables</Description>
     <Copyright>Brad Irby</Copyright>
