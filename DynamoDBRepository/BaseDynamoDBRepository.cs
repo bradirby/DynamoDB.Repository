@@ -16,6 +16,7 @@ namespace DynamoDB.Repository
         protected BaseDynamoDBRepository(IDynamoDBFactory fact)
         {
             Factory = fact;
+            SetupKeyDescriptors();
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace DynamoDB.Repository
 
         }
 
-
+        public abstract void SetupKeyDescriptors();
 
     }
 }

@@ -11,7 +11,7 @@ namespace DynamoDB.Repository.IntgTests
         public void OneTimeSetup()
         {
             var fact = new DynamoDBFactory(new DynamoDBConfigProvider());
-            sut = new MovieRepository(fact, new DynamoDBUpdateDescriptorBuilder(),new MovieDynTbl());
+            sut = new MovieRepository(fact);
         }
 
         [Test]

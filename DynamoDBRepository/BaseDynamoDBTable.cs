@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Amazon.DynamoDBv2.Model;
-using Newtonsoft.Json;
 
 namespace DynamoDB.Repository
 {
-    public abstract class BaseDynamoDBTable<EntType>
+    public class BaseDynamoDBTable<EntType>
     {
-        [JsonIgnore]
-        protected List<DynamoDBKeyDescriptor> KeyDescriptors { get; set; }
+        internal List<DynamoDBKeyDescriptor> KeyDescriptors { get; set; }
 
-        [JsonIgnore]
         public string TableName { get; private set; }
 
-        protected BaseDynamoDBTable(string tableName)
+        internal BaseDynamoDBTable(string tableName)
         {
             TableName = tableName;
             KeyDescriptors = new List<DynamoDBKeyDescriptor>();
@@ -43,6 +39,5 @@ namespace DynamoDB.Repository
             return lst;
         }
 
-        public abstract UpdateItemRequest GetUpdateRequest(EntType entity);
     }
 }

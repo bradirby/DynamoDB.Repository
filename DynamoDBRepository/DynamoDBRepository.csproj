@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DynamoDBUpdateDescriptorBuilder.cs" />
+    <Compile Remove="IDynamoDBUpdateDescriptorBuilder.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AWSSDK.Core" Version="3.3.24.4" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.11" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
