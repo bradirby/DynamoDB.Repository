@@ -3,13 +3,13 @@ using Amazon.DynamoDBv2.Model;
 
 namespace DynamoDB.Repository
 {
-    public class BaseDynamoDBTable<EntType>
+    public class DynamoDBTable<EntType>
     {
-        internal List<DynamoDBKeyDescriptor> KeyDescriptors { get; set; }
+        public List<DynamoDBKeyDescriptor> KeyDescriptors { get; internal set; }
 
         public string TableName { get; private set; }
 
-        internal BaseDynamoDBTable(string tableName)
+        public DynamoDBTable(string tableName)
         {
             TableName = tableName;
             KeyDescriptors = new List<DynamoDBKeyDescriptor>();

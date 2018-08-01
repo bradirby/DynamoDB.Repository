@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
-[assembly: InternalsVisibleTo("DynamoDBRepository.UnitTests")]
-[assembly: InternalsVisibleTo("DynamoDBRepository.IntgTests")]
+[assembly: InternalsVisibleTo("DynamoDB.Repository.UnitTests")]
+[assembly: InternalsVisibleTo("DynamoDB.Repository.IntgTests")]
 
 namespace DynamoDB.Repository
 {

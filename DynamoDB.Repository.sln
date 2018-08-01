@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDBRepository", "DynamoDBRepository\DynamoDBRepository.csproj", "{5C661D31-0CB4-4F15-A060-0CC053EFEE34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository", "DynamoDBRepository\DynamoDB.Repository.csproj", "{5C661D31-0CB4-4F15-A060-0CC053EFEE34}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDBRepository.IntgTests", "DynamoDBRepository.IntgTests\DynamoDBRepository.IntgTests.csproj", "{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository.IntgTests", "DynamoDBRepository.IntgTests\DynamoDB.Repository.IntgTests.csproj", "{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDBRepository.UnitTests", "DynamoDBRepository.UnitTests\DynamoDBRepository.UnitTests.csproj", "{3887BBA8-F8C4-4732-A328-E065F26F21A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository.UnitTests", "DynamoDBRepository.UnitTests\DynamoDB.Repository.UnitTests.csproj", "{3887BBA8-F8C4-4732-A328-E065F26F21A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

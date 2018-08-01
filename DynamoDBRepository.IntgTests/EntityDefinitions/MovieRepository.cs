@@ -6,11 +6,11 @@ namespace DynamoDB.Repository.IntgTests
 {
     public class MovieRepository : BaseDynamoDBRepository<Movie>, IMovieRepository
     {
-        private BaseDynamoDBTable<Movie> MovieTable { get; set; }
+        private DynamoDBTable<Movie> MovieTable { get; set; }
 
         public MovieRepository(IDynamoDBFactory factory) : base(factory)
         {
-            MovieTable = new BaseDynamoDBTable<Movie>("Movies");
+            MovieTable = new DynamoDBTable<Movie>("Movies");
             DynamoTable = factory.GetTableObject(MovieTable.TableName);
         }
 
