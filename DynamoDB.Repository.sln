@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository", "DynamoDBRepository\DynamoDB.Repository.csproj", "{5C661D31-0CB4-4F15-A060-0CC053EFEE34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository.TestWebApp", "DynamoDB.Repository.TestWebApp\DynamoDB.Repository.TestWebApp.csproj", "{0A41BCB1-F541-44BB-8268-3759B96AD659}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository.IntgTests", "DynamoDBRepository.IntgTests\DynamoDB.Repository.IntgTests.csproj", "{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository", "DynamoDB.Repository\DynamoDB.Repository.csproj", "{4AE39CE0-0267-4382-88A8-FF8BC4C7D2C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository.UnitTests", "DynamoDBRepository.UnitTests\DynamoDB.Repository.UnitTests.csproj", "{3887BBA8-F8C4-4732-A328-E065F26F21A6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4B0260CC-A144-4C50-8676-2EEB388316D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoDB.Repository.TestWebApp", "DynamoDB.Repository.TestWebApp\DynamoDB.Repository.TestWebApp.csproj", "{0A41BCB1-F541-44BB-8268-3759B96AD659}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository.IntgTests", "DynamoDBRepository.IntgTests\DynamoDB.Repository.IntgTests.csproj", "{52ED614B-BEA9-4D6C-860C-EE48F50D0721}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,25 +17,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5C661D31-0CB4-4F15-A060-0CC053EFEE34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C661D31-0CB4-4F15-A060-0CC053EFEE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C661D31-0CB4-4F15-A060-0CC053EFEE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C661D31-0CB4-4F15-A060-0CC053EFEE34}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D9CDA5E-BEEB-4AD7-B2D9-58C8350B21C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3887BBA8-F8C4-4732-A328-E065F26F21A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3887BBA8-F8C4-4732-A328-E065F26F21A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3887BBA8-F8C4-4732-A328-E065F26F21A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3887BBA8-F8C4-4732-A328-E065F26F21A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0A41BCB1-F541-44BB-8268-3759B96AD659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A41BCB1-F541-44BB-8268-3759B96AD659}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A41BCB1-F541-44BB-8268-3759B96AD659}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A41BCB1-F541-44BB-8268-3759B96AD659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE39CE0-0267-4382-88A8-FF8BC4C7D2C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE39CE0-0267-4382-88A8-FF8BC4C7D2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE39CE0-0267-4382-88A8-FF8BC4C7D2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE39CE0-0267-4382-88A8-FF8BC4C7D2C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52ED614B-BEA9-4D6C-860C-EE48F50D0721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52ED614B-BEA9-4D6C-860C-EE48F50D0721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52ED614B-BEA9-4D6C-860C-EE48F50D0721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52ED614B-BEA9-4D6C-860C-EE48F50D0721}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A41BCB1-F541-44BB-8268-3759B96AD659} = {4B0260CC-A144-4C50-8676-2EEB388316D7}
+		{52ED614B-BEA9-4D6C-860C-EE48F50D0721} = {4B0260CC-A144-4C50-8676-2EEB388316D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4A0006D-4304-4993-A7A2-CE690624672F}

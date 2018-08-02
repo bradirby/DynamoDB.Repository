@@ -6,14 +6,6 @@ namespace DynamoDB.Repository.IntgTests
 {
     public class DynamoDBFactoryIntgTest
     {
-
-        /// <summary>
-        /// Create a table by hand with the following case sensitive
-        /// Table Name: Movies
-        /// Partition key year : number
-        /// Sort Key title : string
-        /// </summary>
-
         private DynamoDBFactory Sut { get; set; }
 
         [OneTimeSetUp]
@@ -25,49 +17,20 @@ namespace DynamoDB.Repository.IntgTests
 
 
         [Test]
-        public void CreateTable()
+        [Explicit]
+        public void CreateTable_ProperParams_CreatesTable()
         {
-            var client = Sut.GetClient();
-            var tblRequest = Sut.CreateTableAsync("Movie3", GetMovieTableAttributes(), GetMovieTableSchema(), client);
-            Assert.IsNotNull(tblRequest.Result);
-        }
-
-        private List<KeySchemaElement> GetMovieTableSchema()
-        {
-            var KeySchema = new List<KeySchemaElement>()
+            var thru = new ProvisionedThroughput(1, 1);
+            var keys = new List<DynamoDBKeyDescriptor>
             {
-                new KeySchemaElement
-                {
-                    AttributeName = "year",
-                    KeyType = "HASH"
-                },
-                new KeySchemaElement
-                {
-                    AttributeName = "title",
-                    KeyType = "RANGE"
-                }
+                new DynamoDBKeyDescriptor("year", DynamoDBKeyType.Hash, DynamoDBDataType.Number),
+                new DynamoDBKeyDescriptor("title", DynamoDBKeyType.Range, DynamoDBDataType.String)
             };
-            return KeySchema;
 
+            Sut.CreateTable("Movies", keys, thru);
         }
 
-        private List<AttributeDefinition> GetMovieTableAttributes()
-        {
-            var AttributeDefinitions = new List<AttributeDefinition>()
-            {
-                new AttributeDefinition
-                {
-                    AttributeName = "year",
-                    AttributeType = "N"
-                },
-                new AttributeDefinition
-                {
-                    AttributeName = "title",
-                    AttributeType = "S"
-                }
-            };
-            return AttributeDefinitions;
-        }
+
 
     }
 }

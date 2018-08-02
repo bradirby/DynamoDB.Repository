@@ -5,9 +5,12 @@ using NUnit.Framework;
 
 namespace DynamoDB.Repository.IntgTests
 {
+    /// <summary>
+    /// To use these tests, run the CreateTable test in the Factory integration test first
+    /// </summary>
     public class DynamoDBRepositoryIntgTest
     {
-        public MovieRepository Sut { get; set; }
+        private MovieRepository Sut { get; set; }
 
         [OneTimeSetUp]
         public void OneTimeSetup()
@@ -19,7 +22,8 @@ namespace DynamoDB.Repository.IntgTests
         [Test]
         public void GetByKey_ValidKey_ReturnsRow()
         {
-            var m = GetMovie("Brad401");
+            var m = GetMovie("GetByKey_ValidKey_ReturnsRow");
+            Sut.Insert(m);
             var row = Sut.GetById(m.Year, m.Title);
             Assert.IsNotNull(row);
             Assert.AreEqual(m.Title, row.Title);
@@ -36,7 +40,7 @@ namespace DynamoDB.Repository.IntgTests
         [Test]
         public void Insert_ValidObject_Inserts()
         {
-            var m = GetMovie("Brad401");
+            var m = GetMovie("Insert_ValidObject_Inserts" + Guid.NewGuid());
             Sut.Insert(m);
         }
 
@@ -49,8 +53,11 @@ namespace DynamoDB.Repository.IntgTests
         [Test]
         public void Update_ValidObject_Updates()
         {
-            var m = GetMovie("Brad201");
+            var m = GetMovie("Update_ValidObject_Updates" + Guid.NewGuid());
+            Sut.Insert(m);
             var orig = Sut.GetById(m.Year, m.Title);
+            Assert.IsNotNull(orig);
+
             orig.Info.ImageUrl = Guid.NewGuid().ToString();
             Sut.Update(orig);
             var after = Sut.GetById(orig.Year, orig.Title);

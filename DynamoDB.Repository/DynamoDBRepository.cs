@@ -6,26 +6,23 @@ using Newtonsoft.Json;
 
 namespace DynamoDB.Repository
 {
-    public abstract class DynamoDBRepository<EntType>
+    public abstract class DynamoDBRepository<EntType> : IDynamoDBRepository<EntType>
     {
-        protected Table DynamoTable { get; set; }
+        private Table DynamoTable { get; set; }
 
-        private List<DynamoDBKeyDescriptor> KeyDescriptors { get;  }
+
+        private DynamoDBFactory Factory { get; set; }
 
         private string TableName { get; }
 
-        protected void AddKeyDescriptor(string keyName,DynamoDBKeyType keyType, DynamoDBDataType dataType)
-        {
-            KeyDescriptors.Add(new DynamoDBKeyDescriptor( keyName, keyType, dataType));
-        }
+
 
         protected DynamoDBRepository(string tableName, IDynamoDBConfigProvider configProvider)
         {
             TableName = tableName;
-            KeyDescriptors = new List<DynamoDBKeyDescriptor>();
 
-            var factory = new DynamoDBFactory(configProvider);
-            DynamoTable = factory.GetTableObject(TableName);
+            Factory = new DynamoDBFactory(configProvider);
+            DynamoTable = Factory.GetTableObject(TableName);
         }
 
         /// <summary>
@@ -44,13 +41,20 @@ namespace DynamoDB.Repository
         /// <summary>
         /// Updates or Inserts the given item
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public Task<Document> Update(EntType item)
+        public Task<Document> UpdateAsync(EntType item)
         {
+            if (item == null) throw new ArgumentNullException(nameof(item));
             var itemJson = JsonConvert.SerializeObject(item);
             var doc = Document.FromJson(itemJson);
-            return DynamoTable.UpdateItemAsync(doc);
+            return DynamoTable.UpdateItemAsync(doc); 
+        }
+
+        /// <summary>
+        /// Updates or Inserts the given item
+        /// </summary>
+        public void Update(EntType item)
+        {
+            var result = UpdateAsync(item).Result;  //this forces a wait until the operation returns
         }
 
         /// <summary>
@@ -58,21 +62,39 @@ namespace DynamoDB.Repository
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public Document Insert(EntType item)
+        public Task<Document> InsertAsync(EntType item)
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
-            return WriteToTableAsync(item).Result;
+            return WriteToTableAsync(item);
+        }
+
+        /// <summary>
+        /// Inserts the given item
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public void Insert(EntType item)
+        {
+            var result = InsertAsync(item).Result;
+        }
+
+        public Task<Document> GetByKeyAsync(Dictionary<string, DynamoDBEntry> key)
+        {
+            if (key == null) throw new ArgumentNullException(nameof(key));
+            return DynamoTable.GetItemAsync(key);
         }
 
         public EntType GetByKey(Dictionary<string, DynamoDBEntry> key)
         {
-            var result = DynamoTable.GetItemAsync(key);
+            if (key == null) throw new ArgumentNullException(nameof(key));
+            var result = GetByKeyAsync(key);
             if (result?.Result == null) return default(EntType);
 
             var movie = JsonConvert.DeserializeObject<EntType>(result.Result.ToJson());
             return movie;
-
         }
 
+
+     
     }
 }
