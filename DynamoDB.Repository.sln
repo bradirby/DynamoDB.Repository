@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4B0260CC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDB.Repository.IntgTests", "DynamoDBRepository.IntgTests\DynamoDB.Repository.IntgTests.csproj", "{52ED614B-BEA9-4D6C-860C-EE48F50D0721}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestClientProject", "TestClientProject\TestClientProject.csproj", "{A759DCEB-67EA-476C-AF3E-186A683D7144}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{52ED614B-BEA9-4D6C-860C-EE48F50D0721}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52ED614B-BEA9-4D6C-860C-EE48F50D0721}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52ED614B-BEA9-4D6C-860C-EE48F50D0721}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A759DCEB-67EA-476C-AF3E-186A683D7144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A759DCEB-67EA-476C-AF3E-186A683D7144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A759DCEB-67EA-476C-AF3E-186A683D7144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A759DCEB-67EA-476C-AF3E-186A683D7144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0A41BCB1-F541-44BB-8268-3759B96AD659} = {4B0260CC-A144-4C50-8676-2EEB388316D7}
 		{52ED614B-BEA9-4D6C-860C-EE48F50D0721} = {4B0260CC-A144-4C50-8676-2EEB388316D7}
+		{A759DCEB-67EA-476C-AF3E-186A683D7144} = {4B0260CC-A144-4C50-8676-2EEB388316D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4A0006D-4304-4993-A7A2-CE690624672F}
