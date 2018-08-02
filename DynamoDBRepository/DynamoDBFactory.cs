@@ -28,17 +28,9 @@ namespace DynamoDB.Repository
         /// <returns></returns>
         public Table GetTableObject(string tableName) 
         {
-            try
-            {
-                var client = GetClient();
-                var table = Table.LoadTable(client, tableName);
-                return table;
-            }
-            catch (Exception ex)
-            {
-                if (Debugger.IsAttached) Debugger.Break();
-                throw;
-            }
+            var client = GetClient();
+            var table = Table.LoadTable(client, tableName);
+            return table;
         }
 
         public AmazonDynamoDBClient GetClient()
