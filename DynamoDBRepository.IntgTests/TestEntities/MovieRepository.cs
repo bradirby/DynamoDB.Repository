@@ -40,7 +40,7 @@ namespace DynamoDB.Repository.IntgTests.TestEntities
         /// </summary>
         public Movie GetById(int year, string title)
         {
-            return GetByIdAsync(year, title).GetAwaiter().GetResult());
+            return GetByIdAsync(year, title).GetAwaiter().GetResult();
         }
 
     }

@@ -1,4 +1,6 @@
 ﻿using System;
+using Amazon.DynamoDBv2.Model;
+using System.Collections.Generic;
 using DynamoDB.Repository.IntgTests.TestEntities;
 using NUnit.Framework;
 
@@ -7,7 +9,7 @@ namespace DynamoDB.Repository.IntgTests
     /// <summary>
     /// To use these tests, run the CreateTable test in the Factory integration test first
     /// </summary>
-    public class DynamoDBRepositoryIntgTest
+    public class MovieRepoTest
     {
         private MovieRepository Sut { get; set; }
 
@@ -15,9 +17,22 @@ namespace DynamoDB.Repository.IntgTests
         public void OneTimeSetup()
         {
             var mgr = new DynamoDBTableManager(DynamoDbConfigFactory.GetConfigForLocalSimulator());
-            var tables = mgr.get
+            var tables = mgr.GetTableList();
+            if (!tables.TableNames.Contains("Movies")) CreateNewTable(mgr);
 
             Sut = new MovieRepository(mgr);
+        }
+
+        private void CreateNewTable(DynamoDBTableManager mgr)
+        {
+            var thru = new ProvisionedThroughput(1, 1);
+            var keys = new List<DynamoDBKeyDescriptor>
+            {
+                new DynamoDBKeyDescriptor("year", DynamoDBKeyType.Hash, DynamoDBDataType.Number),
+                new DynamoDBKeyDescriptor("title", DynamoDBKeyType.Range, DynamoDBDataType.String)
+            };
+
+            mgr.CreateTable("Movies", keys, thru);
         }
 
         [Test]
@@ -34,7 +49,7 @@ namespace DynamoDB.Repository.IntgTests
         [Test]
         public void GetByKey_NonExistentKey_ReturnsNull()
         {
-            var row = Sut.GetByIdAsync(2013, "Movie Does Not Exist");
+            var row = Sut.GetById(2013, "Movie Does Not Exist");
             Assert.IsNull(row);
         }
 
