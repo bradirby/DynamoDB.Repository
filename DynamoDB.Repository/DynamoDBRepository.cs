@@ -89,12 +89,6 @@ namespace DynamoDB.Repository
             var result = InsertAsync(item).GetAwaiter().GetResult();
         }
 
-        //public async Task<Document> GetByKeyAsync(Dictionary<string, DynamoDBEntry> key)
-        //{
-        //    if (key == null) throw new ArgumentNullException(nameof(key));
-        //    return await DynamoTable.GetItemAsync(key);
-        //}
-
         public EntType GetByKey(Dictionary<string, DynamoDBEntry> key)
         {
             return GetByKeyAsync(key).GetAwaiter().GetResult();
