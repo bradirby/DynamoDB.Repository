@@ -6,13 +6,13 @@ namespace DynamoDB.Repository.IntgTests
 {
     public class DynamoDBFactoryIntgTest
     {
-        private DynamoDBFactory Sut { get; set; }
+        private DynamoDBTableManager Sut { get; set; }
 
         [OneTimeSetUp]
         public void OneTimeSetup()
         {
-            var cfg = new DynamoDBConfigDefaultUserProvider();
-            Sut = new DynamoDBFactory(cfg);
+            var cfg = DynamoDbConfigFactory.GetConfigForLocalSimulator();
+            Sut = new DynamoDBTableManager(cfg);
         }
 
 

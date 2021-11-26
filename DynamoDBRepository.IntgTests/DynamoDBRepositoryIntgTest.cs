@@ -1,6 +1,5 @@
 ﻿using System;
-using DynamoDB.Repository.TestWebApp.DataAccess;
-using DynamoDB.Repository.TestWebApp.Models;
+using DynamoDB.Repository.IntgTests.TestEntities;
 using NUnit.Framework;
 
 namespace DynamoDB.Repository.IntgTests
@@ -15,8 +14,10 @@ namespace DynamoDB.Repository.IntgTests
         [OneTimeSetUp]
         public void OneTimeSetup()
         {
-            var cfg = new DynamoDBConfigDefaultUserProvider();
-            Sut = new MovieRepository(cfg);
+            var mgr = new DynamoDBTableManager(DynamoDbConfigFactory.GetConfigForLocalSimulator());
+            var tables = mgr.get
+
+            Sut = new MovieRepository(mgr);
         }
 
         [Test]
@@ -33,7 +34,7 @@ namespace DynamoDB.Repository.IntgTests
         [Test]
         public void GetByKey_NonExistentKey_ReturnsNull()
         {
-            var row = Sut.GetById(2013, "Movie Does Not Exist");
+            var row = Sut.GetByIdAsync(2013, "Movie Does Not Exist");
             Assert.IsNull(row);
         }
 

@@ -2,23 +2,41 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
-[assembly: InternalsVisibleTo("DynamoDB.Repository.UnitTests")]
-[assembly: InternalsVisibleTo("DynamoDB.Repository.IntgTests")]
+
 
 namespace DynamoDB.Repository
 {
-    public class DynamoDBFactory : IDynamoDBFactory
+    public interface IDynamoDBTableManager
     {
-        private IDynamoDBConfigProvider ConfigProvider { get; set; }
 
-        public DynamoDBFactory(IDynamoDBConfigProvider configProvider)
+
+
+        CreateTableResponse CreateTable(string tableName, List<AttributeDefinition> attributes,
+            List<KeySchemaElement> schema, ProvisionedThroughput thruPut);
+
+        CreateTableResponse CreateTable(string tableName, IEnumerable<DynamoDBKeyDescriptor> descriptorLst,
+            ProvisionedThroughput thruPut);
+
+        Task<CreateTableResponse> CreateTableAsync(string tableName, IEnumerable<DynamoDBKeyDescriptor> descriptorLst,
+            ProvisionedThroughput thruPut);
+
+        Task<CreateTableResponse> CreateTableAsync(string tableName, List<AttributeDefinition> attributes,
+            List<KeySchemaElement> schema, ProvisionedThroughput thruPut);
+
+    }
+
+
+    public class DynamoDBTableManager : IDynamoDBTableManager
+    {
+        private AmazonDynamoDBConfig Config{ get; set; }
+
+        public DynamoDBTableManager(AmazonDynamoDBConfig config)
         {
-            ConfigProvider = configProvider;
+            Config = config;
         }
 
         /// <summary>
@@ -30,30 +48,41 @@ namespace DynamoDB.Repository
         internal Table GetTableObject(string tableName) 
         {
             var client = GetClient();
-            var table = Table.LoadTable(client, tableName);
-            return table;
+            return  Table.LoadTable(client, tableName);
         }
 
         internal AmazonDynamoDBClient GetClient()
         {
-            var client = new AmazonDynamoDBClient(ConfigProvider.GetConfig());
-            return client;
-        }
-
-        private CreateTableRequest GetCreateTableRequest(string tableName, IEnumerable<AttributeDefinition> attributes,
-            IEnumerable<KeySchemaElement> schema, ProvisionedThroughput thruPut)
-        {
-            var createTableRequest = new CreateTableRequest(tableName, schema.ToList(), attributes.ToList(), thruPut);
-            return createTableRequest;
+            return new AmazonDynamoDBClient(Config);
         }
 
 
-        internal Task<CreateTableResponse> CreateTableAsync(string tableName, IEnumerable<AttributeDefinition> attributes,
-            IEnumerable<KeySchemaElement> schema, ProvisionedThroughput thruPut, AmazonDynamoDBClient client)
+        public CreateTableResponse CreateTable(string tableName, List<AttributeDefinition> attributes,
+            List<KeySchemaElement> schema, ProvisionedThroughput thruPut)
         {
-            var createRequest = GetCreateTableRequest(tableName, attributes, schema, thruPut);
-            var createResponse = client.CreateTableAsync(createRequest);
-            return createResponse;
+            return CreateTableAsync(tableName, attributes, schema, thruPut).GetAwaiter().GetResult();
+        }
+
+        public CreateTableResponse CreateTable(string tableName, IEnumerable<DynamoDBKeyDescriptor> descriptorLst, ProvisionedThroughput thruPut)
+        {
+            var descriptors = descriptorLst.ToList();
+            ValidateKeyDescriptors(descriptors);
+            return CreateTable(tableName, GetKeyAttributes(descriptors), GetKeySchema(descriptors), thruPut);
+        }
+
+        public async Task<CreateTableResponse> CreateTableAsync(string tableName, IEnumerable<DynamoDBKeyDescriptor> descriptorLst, ProvisionedThroughput thruPut)
+        {
+            var descriptors = descriptorLst.ToList();
+            ValidateKeyDescriptors(descriptors);
+            return await CreateTableAsync(tableName, GetKeyAttributes(descriptors), GetKeySchema(descriptors), thruPut);
+        }
+
+        public async Task<CreateTableResponse> CreateTableAsync(string tableName, List<AttributeDefinition> attributes,
+            List<KeySchemaElement> schema, ProvisionedThroughput thruPut)
+        {
+            var client = GetClient();
+            var createRequest = new CreateTableRequest(tableName, schema, attributes, thruPut);
+            return await client.CreateTableAsync(createRequest);
         }
 
 
@@ -71,12 +100,6 @@ namespace DynamoDB.Repository
                 throw new ArgumentOutOfRangeException("Only 1 of each keyType allowed");
         }
 
-        public void CreateTable(string tableName, IEnumerable<DynamoDBKeyDescriptor> descriptors, ProvisionedThroughput thruPut)
-        {
-            ValidateKeyDescriptors(descriptors);
-            var client = GetClient();
-            var result = CreateTableAsync(tableName, GetKeyAttributes(descriptors), GetKeySchema(descriptors), thruPut, client).Result;
-        }
 
         /// <summary>
         /// Returns the key schema which is used in table creation
