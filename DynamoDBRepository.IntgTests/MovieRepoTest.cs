@@ -1,6 +1,7 @@
 ﻿using System;
-using DynamoDB.Repository.TestWebApp.DataAccess;
-using DynamoDB.Repository.TestWebApp.Models;
+using Amazon.DynamoDBv2.Model;
+using System.Collections.Generic;
+using DynamoDB.Repository.IntgTests.TestEntities;
 using NUnit.Framework;
 
 namespace DynamoDB.Repository.IntgTests
@@ -8,15 +9,30 @@ namespace DynamoDB.Repository.IntgTests
     /// <summary>
     /// To use these tests, run the CreateTable test in the Factory integration test first
     /// </summary>
-    public class DynamoDBRepositoryIntgTest
+    public class MovieRepoTest
     {
         private MovieRepository Sut { get; set; }
 
         [OneTimeSetUp]
         public void OneTimeSetup()
         {
-            var cfg = new DynamoDBConfigDefaultUserProvider();
-            Sut = new MovieRepository(cfg);
+            var mgr = new DynamoDBTableManager(DynamoDbConfigFactory.GetConfigForLocalSimulator());
+            var tables = mgr.GetTableList();
+            if (!tables.TableNames.Contains("Movies")) CreateNewTable(mgr);
+
+            Sut = new MovieRepository(mgr);
+        }
+
+        private void CreateNewTable(DynamoDBTableManager mgr)
+        {
+            var thru = new ProvisionedThroughput(1, 1);
+            var keys = new List<DynamoDBKeyDescriptor>
+            {
+                new DynamoDBKeyDescriptor("year", DynamoDBKeyType.Hash, DynamoDBDataType.Number),
+                new DynamoDBKeyDescriptor("title", DynamoDBKeyType.Range, DynamoDBDataType.String)
+            };
+
+            mgr.CreateTable("Movies", keys, thru);
         }
 
         [Test]
