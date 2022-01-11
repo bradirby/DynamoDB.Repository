@@ -86,6 +86,7 @@ namespace DynamoDB.Repository
         /// <returns></returns>
         public void Insert(EntType item)
         {
+            if (item == null) throw new ArgumentNullException("cannot insert null item");
             var result = InsertAsync(item).GetAwaiter().GetResult();
         }
 

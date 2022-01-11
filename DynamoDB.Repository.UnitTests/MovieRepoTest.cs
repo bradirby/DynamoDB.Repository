@@ -1,14 +1,12 @@
 ﻿using System;
 using Amazon.DynamoDBv2.Model;
 using System.Collections.Generic;
-using DynamoDB.Repository.IntgTests.TestEntities;
+using DynamoDB.Repository.IntgTests.UnitTests;
 using NUnit.Framework;
 
-namespace DynamoDB.Repository.IntgTests
+namespace DynamoDB.Repository.UnitTests
 {
-    /// <summary>
-    /// To use these tests, run the CreateTable test in the Factory integration test first
-    /// </summary>
+    
     public class MovieRepoTest
     {
         private MovieRepository Sut { get; set; }

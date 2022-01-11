@@ -10,6 +10,7 @@ namespace DynamoDB.Repository
     public static class DynamoDbConfigFactory 
     {
  
+        //This does not require a URL, it's just an endpoint specification
         public static AmazonDynamoDBConfig GetConfigForEndpoint(RegionEndpoint endPoint)
         {
             return new AmazonDynamoDBConfig {RegionEndpoint = endPoint};

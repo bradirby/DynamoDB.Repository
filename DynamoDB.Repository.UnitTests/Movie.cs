@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace DynamoDB.Repository.IntgTests
+namespace DynamoDB.Repository.UnitTests
 {
     public class Movie
     {

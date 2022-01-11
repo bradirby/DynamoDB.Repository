@@ -16,8 +16,6 @@ namespace DynamoDB.Repository
         Task<ListTablesResponse> GetTableListAsync();
         ListTablesResponse GetTableList();
 
-
-
         CreateTableResponse CreateTable(string tableName, List<AttributeDefinition> attributes, List<KeySchemaElement> schema, ProvisionedThroughput thruPut);
         CreateTableResponse CreateTable(string tableName, IEnumerable<DynamoDBKeyDescriptor> descriptorLst, ProvisionedThroughput thruPut);
         Task<CreateTableResponse> CreateTableAsync(string tableName, IEnumerable<DynamoDBKeyDescriptor> descriptorLst, ProvisionedThroughput thruPut);
@@ -30,9 +28,9 @@ namespace DynamoDB.Repository
     {
         private AmazonDynamoDBConfig Config{ get; set; }
 
-        public DynamoDBTableManager(AmazonDynamoDBConfig config)
+        public DynamoDBTableManager(AmazonDynamoDBConfig config = null)
         {
-            Config = config;
+            Config = config ?? new AmazonDynamoDBConfig();
         }
 
         /// <summary>
