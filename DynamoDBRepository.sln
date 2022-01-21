@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoDBRepository.UnitTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestLambda", "TestLambda\TestLambda.csproj", "{212AF72C-B0CD-490F-B7A6-7568A4823608}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolHolidays", "SchoolHolidays\SchoolHolidays.csproj", "{3FDB3627-E397-42AE-B4AC-8F7973264444}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{212AF72C-B0CD-490F-B7A6-7568A4823608}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{212AF72C-B0CD-490F-B7A6-7568A4823608}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{212AF72C-B0CD-490F-B7A6-7568A4823608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FDB3627-E397-42AE-B4AC-8F7973264444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FDB3627-E397-42AE-B4AC-8F7973264444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FDB3627-E397-42AE-B4AC-8F7973264444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FDB3627-E397-42AE-B4AC-8F7973264444}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{52ED614B-BEA9-4D6C-860C-EE48F50D0721} = {4B0260CC-A144-4C50-8676-2EEB388316D7}
 		{551F4636-77E2-4FB2-88CD-9B4C0F0EF43B} = {4B0260CC-A144-4C50-8676-2EEB388316D7}
+		{3FDB3627-E397-42AE-B4AC-8F7973264444} = {4B0260CC-A144-4C50-8676-2EEB388316D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4A0006D-4304-4993-A7A2-CE690624672F}

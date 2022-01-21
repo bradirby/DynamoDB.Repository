@@ -16,22 +16,11 @@ namespace DynamoDBRepository.UnitTests
         {
             var mgr = new DynamoDBTableManager(DynamoDbConfigFactory.GetConfigForLocalSimulator());
             var tables = mgr.GetTableList();
-            if (!tables.TableNames.Contains("Movies")) CreateNewTable(mgr);
+            if (!tables.TableNames.Contains(MovieRepository.DynamoDBTableName)) MovieRepository.CreateNewTable(mgr);
 
             Sut = new MovieRepository(mgr);
         }
 
-        private void CreateNewTable(DynamoDBTableManager mgr)
-        {
-            var thru = new ProvisionedThroughput(1, 1);
-            var keys = new List<DynamoDBKeyDescriptor>
-            {
-                new DynamoDBKeyDescriptor("year", DynamoDBKeyType.Hash, DynamoDBDataType.Number),
-                new DynamoDBKeyDescriptor("title", DynamoDBKeyType.Range, DynamoDBDataType.String)
-            };
-
-            mgr.CreateTable("Movies", keys, thru);
-        }
 
         [Test]
         public void GetByKey_ValidKey_ReturnsRow()

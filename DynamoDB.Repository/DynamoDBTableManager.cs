@@ -102,7 +102,7 @@ namespace DynamoDBRepository
             if (descriptors == null) throw new ArgumentNullException(nameof(descriptors));
             var lst = descriptors.ToList();
             if (lst.ToList().Count > 2) throw new ArgumentOutOfRangeException("Only 2 Key Descriptors allowed");
-            if (lst.ToList().Count < 2) throw new ArgumentOutOfRangeException("Must specify at least one key");
+            if (lst.ToList().Count < 1) throw new ArgumentOutOfRangeException("Must specify at least one key");
             if (lst.Count == 2 && lst[0].KeyType == lst[1].KeyType)
                 throw new ArgumentOutOfRangeException("Only 1 of each keyType allowed");
         }
