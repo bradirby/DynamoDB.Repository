@@ -5,7 +5,7 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Newtonsoft.Json;
 
-namespace DynamoDB.Repository
+namespace DynamoDBRepository
 {
     public abstract class DynamoDBRepository<EntType> : IDynamoDBRepository<EntType>
     {

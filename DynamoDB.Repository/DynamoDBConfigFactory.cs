@@ -1,7 +1,7 @@
 ﻿using Amazon;
 using Amazon.DynamoDBv2;
 
-namespace DynamoDB.Repository
+namespace DynamoDBRepository
 {
 
     /// <summary>

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -7,13 +7,14 @@
   <ItemGroup>
     <PackageReference Include="AWSSDK.Core" Version="3.7.5.12" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.2.8" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.40" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NUnit" Version="3.13.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DynamoDB.Repository\DynamoDB.Repository.csproj" />
+    <ProjectReference Include="..\DynamoDB.Repository\DynamoDBRepository.csproj" />
   </ItemGroup>
 
 </Project>

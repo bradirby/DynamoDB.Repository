@@ -1,10 +1,10 @@
 ﻿using System;
 using Amazon.DynamoDBv2.Model;
 using System.Collections.Generic;
-using DynamoDB.Repository.IntgTests.UnitTests;
+using DynamoDBRepository.IntgTests.UnitTests;
 using NUnit.Framework;
 
-namespace DynamoDB.Repository.UnitTests
+namespace DynamoDBRepository.UnitTests
 {
     
     public class MovieRepoTest

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DocumentModel;
 
-namespace DynamoDB.Repository
+namespace DynamoDBRepository
 {
     public interface IDynamoDBRepository<EntType>
     {

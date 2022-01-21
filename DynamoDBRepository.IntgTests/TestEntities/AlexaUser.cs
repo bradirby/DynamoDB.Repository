@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DynamoDB.Repository.IntgTests.TestEntities;
+using DynamoDBRepository.IntgTests.TestEntities;
 using Newtonsoft.Json;
 
-namespace DynamoDB.Repository.IntgTests
+namespace DynamoDBRepository.IntgTests
 {
     public class AlexaUser
     {

@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using DynamoDB.Repository.UnitTests;
+using DynamoDBRepository.UnitTests;
 
-namespace DynamoDB.Repository.IntgTests.UnitTests
+namespace DynamoDBRepository.IntgTests.UnitTests
 {
 
     public interface IMovieRepository : IDynamoDBRepository<Movie>

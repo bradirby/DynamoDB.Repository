@@ -14,6 +14,6 @@
     <PackageReference Include="AWSSDK.S3" Version="3.7.7.10" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DynamoDB.Repository\DynamoDB.Repository.csproj" />
+    <ProjectReference Include="..\DynamoDB.Repository\DynamoDBRepository.csproj" />
   </ItemGroup>
 </Project>

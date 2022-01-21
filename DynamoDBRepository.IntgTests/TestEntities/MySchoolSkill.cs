@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DynamoDB.Repository.IntgTests.TestEntities
+namespace DynamoDBRepository.IntgTests.TestEntities
 {
     public class MySchoolSkill
     {

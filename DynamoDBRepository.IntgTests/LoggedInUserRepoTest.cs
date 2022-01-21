@@ -3,10 +3,10 @@ using Amazon.DynamoDBv2.Model;
 using System.Collections.Generic;
 using Amazon;
 using Amazon.DynamoDBv2;
-using DynamoDB.Repository.IntgTests.TestEntities;
+using DynamoDBRepository.IntgTests.TestEntities;
 using NUnit.Framework;
 
-namespace DynamoDB.Repository.IntgTests
+namespace DynamoDBRepository.IntgTests
 {
     
     public class LoggedInUserRepoTest

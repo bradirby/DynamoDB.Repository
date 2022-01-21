@@ -9,7 +9,7 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
 
 
-namespace DynamoDB.Repository
+namespace DynamoDBRepository
 {
     public interface IDynamoDBTableManager
     {

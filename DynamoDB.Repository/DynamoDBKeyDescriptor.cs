@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DynamoDB.Repository
+namespace DynamoDBRepository
 {
     public class DynamoDBKeyDescriptor
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamoDB.Repository.IntgTests.TestEntities
+namespace DynamoDBRepository.IntgTests.TestEntities
 {
 
     public interface ILoggedInUserRepository : IDynamoDBRepository<AlexaUser>

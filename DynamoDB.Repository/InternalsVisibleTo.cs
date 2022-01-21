@@ -6,7 +6,7 @@ using System.Text;
 [assembly: InternalsVisibleTo("DynamoDB.Repository.UnitTests")]
 [assembly: InternalsVisibleTo("DynamoDB.Repository.IntgTests")]
 
-namespace DynamoDB.Repository
+namespace DynamoDBRepository
 {
 
 
