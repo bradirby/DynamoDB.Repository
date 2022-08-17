@@ -59,14 +59,6 @@ namespace DynamoDBRepository
             return await DynamoTable.UpdateItemAsync(doc); 
         }
 
-        /// <summary>
-        /// Updates or Inserts the given item
-        /// </summary>
-        public Document Update(EntType item)
-        {
-            return UpdateAsync(item).GetAwaiter().GetResult();
-        }
-
 
         /// <summary>
         /// Inserts the given item
@@ -79,21 +71,6 @@ namespace DynamoDBRepository
             return await WriteToTableAsync(item);
         }
 
-        /// <summary>
-        /// Inserts the given item
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public void Insert(EntType item)
-        {
-            if (item == null) throw new ArgumentNullException("cannot insert null item");
-            var result = InsertAsync(item).GetAwaiter().GetResult();
-        }
-
-        public EntType GetByKey(Dictionary<string, DynamoDBEntry> key)
-        {
-            return GetByKeyAsync(key).GetAwaiter().GetResult();
-        }
 
         public async Task<EntType> GetByKeyAsync(Dictionary<string, DynamoDBEntry> key)
         {

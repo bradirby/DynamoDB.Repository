@@ -56,13 +56,13 @@ namespace SchoolHolidays
             var currRow =repo.GetById(id);
             if (currRow == null)
             {
-                repo.Insert(this);
+                repo.InsertAsync(this);
                 return;
             }
 
             currRow.VacationDays.Clear();
             currRow.VacationDays.AddRange(VacationDays);
-            repo.Update(currRow);
+            repo.UpdateAsync(currRow);
         }
 
     }

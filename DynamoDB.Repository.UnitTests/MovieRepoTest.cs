@@ -1,6 +1,5 @@
 ﻿using System;
-using Amazon.DynamoDBv2.Model;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using DynamoDBRepository.IntgTests.UnitTests;
 using NUnit.Framework;
 
@@ -23,10 +22,10 @@ namespace DynamoDBRepository.UnitTests
 
 
         [Test]
-        public void GetByKey_ValidKey_ReturnsRow()
+        public async Task GetByKey_ValidKey_ReturnsRow()
         {
             var m = GetMovie("GetByKey_ValidKey_ReturnsRow");
-            Sut.Insert(m);
+            await Sut.InsertAsync(m);
             var row = Sut.GetById(m.Year, m.Title);
             Assert.IsNotNull(row);
             Assert.AreEqual(m.Title, row.Title);
@@ -41,37 +40,37 @@ namespace DynamoDBRepository.UnitTests
         }
 
         [Test]
-        public void Insert_ValidObject_Inserts()
+        public async Task Insert_ValidObject_Inserts()
         {
             var m = GetMovie("Insert_ValidObject_Inserts" + Guid.NewGuid());
-            Sut.Insert(m);
+            await Sut.InsertAsync(m);
         }
 
         [Test]
         public void Insert_NullObject_Throws()
         {
-            Assert.Throws<ArgumentNullException>(() => Sut.Insert(null));
+            Assert.Throws<ArgumentNullException>(() => Sut.InsertAsync(null).GetAwaiter().GetResult());
         }
 
         [Test]
-        public void Update_ValidObject_Updates()
+        public async Task Update_ValidObject_Updates()
         {
             var m = GetMovie("Update_ValidObject_Updates" + Guid.NewGuid());
-            Sut.Insert(m);
+            await Sut.InsertAsync(m);
             var orig = Sut.GetById(m.Year, m.Title);
             Assert.IsNotNull(orig);
 
             orig.Info.ImageUrl = Guid.NewGuid().ToString();
-            Sut.Update(orig);
+            await Sut.UpdateAsync(orig);
             var after = Sut.GetById(orig.Year, orig.Title);
             Assert.AreEqual(orig.Title, after.Title);
             Assert.AreEqual(orig.Info.ImageUrl, after.Info.ImageUrl);
         }
 
         [Test]
-        public void Update_NullObject_Throws()
+        public async Task Update_NullObject_Throws()
         {
-            Assert.Throws<ArgumentNullException>(() => Sut.Update(null));
+            Assert.Throws<ArgumentNullException>(() => Sut.UpdateAsync(null).GetAwaiter().GetResult());
         }
 
         private Movie GetMovie(string movieName)

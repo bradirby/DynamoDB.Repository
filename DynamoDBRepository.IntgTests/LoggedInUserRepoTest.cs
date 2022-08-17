@@ -1,6 +1,7 @@
 ﻿using System;
 using Amazon.DynamoDBv2.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
 using DynamoDBRepository.IntgTests.TestEntities;
@@ -29,7 +30,10 @@ namespace DynamoDBRepository.IntgTests
 
             var mgr = new DynamoDBTableManager(clientConfig);
             var tables = mgr.GetTableList();
-            if (!tables.TableNames.Contains(AlexaUser.DynamoDBTableName)) CreateNewTable(mgr, AlexaUser.DynamoDBTableName);
+
+            //create a new table in the local DynamoDB, if necessary
+            if (!tables.TableNames.Contains(AlexaUser.DynamoDBTableName)) 
+                CreateNewTable(mgr, AlexaUser.DynamoDBTableName);
 
             Sut = new LoggedInUserRepository(mgr);
         }
@@ -46,10 +50,10 @@ namespace DynamoDBRepository.IntgTests
         }
 
         [Test]
-        public void GetByKey_ValidKey_ReturnsRow()
+        public async Task GetByKey_ValidKey_ReturnsRow()
         {
             var m = GetTestUserData("Brad","Irby");
-            Sut.Insert(m);
+            await Sut.InsertAsync(m);
             var row = Sut.GetById(m.AlexaUserId);
             Assert.IsNotNull(row);
             Assert.AreEqual(m.FirstName, row.FirstName);
@@ -64,37 +68,37 @@ namespace DynamoDBRepository.IntgTests
         }
 
         [Test]
-        public void Insert_ValidObject_Inserts()
+        public async Task Insert_ValidObject_Inserts()
         {
             var m = GetTestUserData("test","user");
-            Sut.Insert(m);
+            await Sut.InsertAsync(m);
         }
 
         [Test]
         public void Insert_NullObject_Throws()
         {
-            Assert.Throws<ArgumentNullException>(() => Sut.Insert(null));
+            Assert.Throws<ArgumentNullException>(() => Sut.InsertAsync(null).GetAwaiter().GetResult());
         }
 
         [Test]
-        public void Update_ValidObject_Updates()
+        public async Task Update_ValidObject_Updates()
         {
             var m = GetTestUserData("Update","user");
-            Sut.Insert(m);
+            await Sut.InsertAsync(m);
             var orig = Sut.GetById(m.AlexaUserId);
             Assert.IsNotNull(orig);
 
             orig.FirstName= Guid.NewGuid().ToString();
-            Sut.Update(orig);
+            await Sut.UpdateAsync(orig);
             var after = Sut.GetById(orig.AlexaUserId);
             Assert.AreEqual(orig.FirstName, after.FirstName);
             Assert.AreEqual(orig.LastName, after.LastName);
         }
 
         [Test]
-        public void Update_NullObject_Throws()
+        public async Task Update_NullObject_Throws()
         {
-            Assert.Throws<ArgumentNullException>(() => Sut.Update(null));
+            Assert.Throws<ArgumentNullException>(() => Sut.UpdateAsync(null).GetAwaiter().GetResult());
         }
 
         private AlexaUser GetTestUserData(string firstname, string lastname)

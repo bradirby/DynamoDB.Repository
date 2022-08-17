@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <AWSProjectType>Lambda</AWSProjectType>
     <!-- This property makes the build directory similar to a publish directory and helps the AWS .NET Lambda Mock Test Tool find project dependencies. -->
@@ -8,10 +8,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Core" Version="2.1.0" />
-    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.2.0" />
-    <PackageReference Include="Amazon.Lambda.S3Events" Version="2.0.1" />
-    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.2.12" />
-    <PackageReference Include="AWSSDK.S3" Version="3.7.7.10" />
+    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.3.0" />
+    <PackageReference Include="Amazon.Lambda.S3Events" Version="3.0.0" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.3.69" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.9.40" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DynamoDB.Repository\DynamoDBRepository.csproj" />
